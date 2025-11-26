@@ -8,11 +8,11 @@ let students = [
     { name: "Han Ren", grade: "B.S. Student", major: "Mechanical Engineering", group: "Simulation", img: "hanren.jpg" },
     { name: "Xinyao Qin", grade: "Ph.D. Student", major: "Automation", group: "Grasping", img: "xinyaoqin.jpg" },
     // Newly added current members
-    { name: "Yuchiao Huang", grade: "B.S. Student", major: "Computer Science and Technology", group: "Vision", img: "yuchiaohuang.jpg" },
-    { name: "Kejin Wang", grade: "B.S. Student", major: "Electronic Engineering and Technology", group: "Hardware", img: "kejinwang.jpg" },
-    { name: "Zixu Wang", grade: "Master Student", major: "Automation", group: "Navigation", img: "zixuwang.jpg" },
-    { name: "Yiru Liu", grade: "B.S. Student", major: "Mechanical Engineering", group: "Grasping", img: "yiruliu.jpg" },
-    { name: "Rui Fang", grade: "Ph.D. Student", major: "Aerospace Engineering", group: "Simulation", img: "ruifang.jpg" }
+    { name: "Yuchiao Huang", grade: "B.S. Student", major: "Automation", group: "Navigation", img: "yuchiaohuang.jpg" },
+    { name: "Kejin Wang", grade: "B.S. Student", major: "Computer Science and Technology", group: "Hardware", img: "kejinwang.jpg" },
+    { name: "Zixu Wang", grade: "B.S. Student", major: "Automation", group: "Navigation", img: "zixuwang.jpg" },
+    { name: "Yiru Liu", grade: "B.S. Student", major: "Automation", group: "Grasping", img: "yiruliu.jpg" },
+    { name: "Rui Fang", grade: "B.S. Student", major: "Computer Science and Technology", group: "Simulation", img: "ruifang.jpg" }
 ];
 
 let past_members = [
