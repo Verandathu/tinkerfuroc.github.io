@@ -144,93 +144,14 @@
             <hr />
             <h3 id="students">Students</h3>
 
-            <div class="row">
-                <div class="col-sm-6 clearfix">
-                </div>
+            <!-- Students list (rendered by JS) -->
+            <div id="students_list" class="students-container"></div>
 
-                <div class="col-sm-6 clearfix">
-                </div>
-            </div><!-- end row -->
+            <hr />
+            <h3 id="past_members">Past members</h3>
 
-            <div class="row">
-                <div class="col-sm-6 clearfix">
-                </div>
-
-                <div class="col-sm-6 clearfix">
-                </div>
-            </div><!-- end row -->
-
-            <div class="row">
-                <div class="col-sm-6 clearfix">
-                </div>
-
-                <div class="col-sm-6 clearfix">
-                </div>
-            </div><!-- end row -->
-
-            <div class="row">
-                <div class="col-sm-6 clearfix">
-                </div>
-
-                <div class="col-sm-6 clearfix">
-                </div>
-            </div><!-- end row -->
-
-            <div class="row">
-                <div class="col-sm-6 clearfix">
-                </div>
-
-                <div class="col-sm-6 clearfix">
-                </div>
-            </div><!-- end row -->
-
-            <div class="row">
-                <div class="col-sm-6 clearfix">
-                </div>
-
-                <div class="col-sm-6 clearfix">
-                </div>
-            </div><!-- end row -->
-
-            <div class="row">
-                <div class="col-sm-6 clearfix">
-                </div>
-
-                <div class="col-sm-6 clearfix">
-                </div>
-            </div><!-- end row -->
-
-            <div class="row">
-                <div class="col-sm-6 clearfix">
-                </div>
-
-                <div class="col-sm-6 clearfix">
-                </div>
-            </div><!-- end row -->
-
-            <div class="row">
-                <div class="col-sm-6 clearfix">
-                </div>
-
-                <div class="col-sm-6 clearfix">
-                </div>
-            </div><!-- end row -->
-
-            <div class="row">
-                <div class="col-sm-6 clearfix">
-                </div>
-
-                <div class="col-sm-6 clearfix">
-                </div>
-            </div><!-- end row -->
-
-            <div class="row">
-                <div class="col-sm-6 clearfix">
-                </div>
-
-                <div class="col-sm-6 clearfix">
-                </div>
-            </div><!-- end row -->
+            <!-- Past members list (rendered by JS) -->
+            <div id="past_members_list" class="students-container"></div>
 
         </div><!-- end container -->
     </div><!-- end section -->
@@ -262,56 +183,101 @@
     <script src="js/contact_me.js"></script>
     <!-- ALL PLUGINS -->
     <script src="js/custom.js"></script>
+
+    <style>
+        /* styles for the publications list */
+        .ul_bullets {
+            padding-left: 1em !important;
+            margin-left: 1em;
+            font-size: 16px;
+            color: rgb(64, 64, 64);
+        }
+
+        .li_bullets {
+            list-style-type: disc !important;
+        }
+
+        .member_pic {
+            width: 25%;
+            float: left;
+            margin-right: 20px;
+            margin-bottom: 20px;
+            border-radius: 20px;
+        }
+    </style>
+
+    <!-- Load students data -->
+    <script src="students_data.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            function createMemberCol(member) {
+                const col = document.createElement('div');
+                col.className = 'col-sm-6 clearfix';
+
+                const img = document.createElement('img');
+                img.src = `images/teampic/${member.img}`;
+                img.className = 'img-fluid img-rounded member_pic';
+                col.appendChild(img);
+
+                const h4 = document.createElement('h4');
+                h4.textContent = member.name;
+                col.appendChild(h4);
+
+                const p = document.createElement('p');
+                p.innerHTML = `<i>${member.grade}, ${member.major}, Tsinghua University</i>`;
+                col.appendChild(p);
+
+                const ul = document.createElement('ul');
+                ul.style.overflow = 'hidden';
+                const li1 = document.createElement('li');
+                li1.textContent = `In ${member.group} Group`;
+                ul.appendChild(li1);
+                col.appendChild(ul);
+
+                return col;
+            }
+
+            function renderList(containerId, list) {
+                const container = document.getElementById(containerId);
+                // clear
+                container.innerHTML = '';
+                // create rows, 2 columns per row to match original layout
+                for (let i = 0; i < list.length; i += 2) {
+                    const row = document.createElement('div');
+                    row.className = 'row';
+
+                    const col1 = createMemberCol(list[i]);
+                    row.appendChild(col1);
+
+                    if (i + 1 < list.length) {
+                        const col2 = createMemberCol(list[i + 1]);
+                        row.appendChild(col2);
+                    } else {
+                        // keep the other half empty to match original two-column layout (optional)
+                        const emptyCol = document.createElement('div');
+                        emptyCol.className = 'col-sm-6 clearfix';
+                        row.appendChild(emptyCol);
+                    }
+
+                    container.appendChild(row);
+                }
+            }
+
+            // Render current students and past members using arrays from students_data.js
+            if (typeof students !== 'undefined') {
+                renderList('students_list', students);
+            } else {
+                console.warn('students array not found');
+            }
+
+            if (typeof past_members !== 'undefined') {
+                renderList('past_members_list', past_members);
+            } else {
+                console.warn('past_members array not found');
+            }
+        });
+    </script>
 </body>
 
 </html>
-
-<style>
-    /* styles for the publications list */
-    .ul_bullets {
-        padding-left: 1em !important;
-        margin-left: 1em;
-        font-size: 16px;
-        color: rgb(64, 64, 64);
-    }
-
-    .li_bullets {
-        list-style-type: disc !important;
-    }
-
-    .member_pic {
-        width: 25%;
-        float: left;
-        margin-right: 20px;
-        margin-bottom: 20px;
-        border-radius: 20px;
-    }
-</style>
-
-
-<script>
-    let elements = document.getElementsByClassName('col-sm-6');
-
-    for (let i = 0; i < students.length; i++) {
-        const div = elements[i+3];
-        const img = document.createElement('img');
-        img.src = `images/teampic/${students[i].img}`;
-        img.className = "img-fluid img-rounded member_pic";
-        div.appendChild(img);
-
-        const h4 = document.createElement('h4');
-        h4.textContent = students[i].name;
-        div.appendChild(h4);
-
-        const p = document.createElement('p');
-        p.innerHTML = `<i>${students[i].grade}, ${students[i].major}, Tsinghua University</i>`;
-        div.appendChild(p);
-
-        const ul = document.createElement('ul');
-        ul.style.overflow = 'hidden';
-        const li1 = document.createElement('li');
-        li1.textContent = `In ${students[i].group} Group`;
-        ul.appendChild(li1);
-        div.appendChild(ul);
-    }
-</script>
