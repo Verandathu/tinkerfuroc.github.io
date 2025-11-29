@@ -12,7 +12,7 @@ let students = [
     { name: "Yiru Liu", grade: "B.S. Student", major: "Automation", group: "Grasping", img: "yiruliu.jpeg" },
     { name: "Yuchiao Huang", grade: "B.S. Student", major: "Automation", group: "Navigation", img: "yuchiaohuang.jpg" },
     { name: "Zixu Wang", grade: "B.S. Student", major: "Automation", group: "Grasping and Vision", img: "zixuwang.jpg" },
-    { name: "Rui Fang", grade: "B.S. Student", major: "Computer Science and Technology", group: "Simulation", img: "ruifang.jpg" }
+    { name: "Rui Fang", grade: "B.S. Student", major: "Computer Science and Technology", group: "Simulation", img: "yunfeili.png" }
 ];
 
 let past_members = [
